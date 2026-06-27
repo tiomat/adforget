@@ -1,8 +1,10 @@
 ||api.expf.ru^
 ||api.vigo.tech^
 ||banners.adfox.ru^
+||cdn-st.rutubelist.ru^
 ||cdn.uxfeedback.ru^
 ||goya.rutube.ru^
+||log.rutube.ru^
 ||premier-static.rtbcdn.ru^
 ||static.rutubelist.ru^
 ||test.rutube.ru^
