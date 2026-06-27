@@ -43,6 +43,15 @@ function normalizeDomain(input) {
   return domain;
 }
 
+function removeSubdomains(parentDomain) {
+  const suffix = '.' + parentDomain;
+  for (const domain of blockedDomains) {
+    if (domain !== parentDomain && domain.endsWith(suffix)) {
+      blockedDomains.delete(domain);
+    }
+  }
+}
+
 function loadBlocked() {
   try {
     if (!fs.existsSync(ADLIST_PATH)) {
@@ -153,6 +162,7 @@ app.post('/block', (req, res) => {
   }
 
   blockedDomains.add(domain);
+  removeSubdomains(domain);
   saveBlocked();
   scheduleSync(`block ${domain}`);
 
