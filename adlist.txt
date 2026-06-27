@@ -15,6 +15,7 @@
 ||log.strm.yandex.ru^
 ||media.mediavitrina.ru^
 ||premier-static.rtbcdn.ru^
+||serving-sys.ru^
 ||ssp.rutube.ru^
 ||stat-analytics.mediavitrina.ru^
 ||stat.teleport.media^
