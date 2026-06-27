@@ -1,4 +1,6 @@
 ||api.expf.ru^
 ||cdn.uxfeedback.ru^
+||goya.rutube.ru^
+||premier-static.rtbcdn.ru^
 ||test.rutube.ru^
 ||wcm.weborama-tech.ru^
