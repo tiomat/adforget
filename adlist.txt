@@ -30,3 +30,4 @@
 ||vtrifa-c8d56ac8-3e03-4fa6-bef5-2cd8add958e4-677.sync.sspnet.tech^
 ||wcm.weborama-tech.ru^
 ||www.tns-counter.ru^
+||yast.rutube.ru^
