@@ -1,5 +1,4 @@
 ||1083--c8d56ac8-3e03-4fa6-bef5-2cd8add958e4.stbid.ru^
-||68b27.telecid.ru^
 ||931221.log.rutube.ru^
 ||api.expf.ru^
 ||api.vigo.tech^
@@ -24,6 +23,7 @@
 ||static.wi-fi.ru^
 ||staticmv.mediavitrina.ru^
 ||swarm-obi.teleport.media^
+||telecid.ru^
 ||test.rutube.ru^
 ||tns-counter.ru^
 ||vitv.telecomid.ru^
