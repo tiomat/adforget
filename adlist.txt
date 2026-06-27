@@ -1,3 +1,4 @@
 ||api.expf.ru^
 ||cdn.uxfeedback.ru^
+||test.rutube.ru^
 ||wcm.weborama-tech.ru^
