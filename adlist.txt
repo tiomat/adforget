@@ -11,6 +11,8 @@
 ||premier-static.rtbcdn.ru^
 ||ssp.rutube.ru^
 ||static.rutubelist.ru^
+||static.wi-fi.ru^
+||staticmv.mediavitrina.ru^
 ||test.rutube.ru^
 ||tns-counter.ru^
 ||wcm.weborama-tech.ru^
