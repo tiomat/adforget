@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "AdForget",
+  "version": "1.0.0",
+  "description": "Inspect domains used by the current page and manage AdGuard Home blocklist.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "adforget@tiomat.github.io",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "webRequest",
+    "<all_urls>",
+    "http://localhost:3000/*"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon.svg",
+    "default_title": "AdForget"
+  },
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  }
+}

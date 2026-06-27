@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdForget</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>AdForget</h1>
+    <div class="status" id="server-status">checking server…</div>
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="filter active" data-filter="all">All</button>
+    <button class="filter" data-filter="document">Doc</button>
+    <button class="filter" data-filter="script">Scripts</button>
+    <button class="filter" data-filter="stylesheet">CSS</button>
+    <button class="filter" data-filter="image">Images</button>
+    <button class="filter" data-filter="media">Media</button>
+    <button class="filter" data-filter="xhr">XHR</button>
+    <button class="filter" data-filter="other">Other</button>
+  </div>
+
+  <div class="search">
+    <input type="text" id="search-input" placeholder="Filter domains…">
+  </div>
+
+  <div class="domain-list" id="domain-list">
+    <div class="empty">Loading…</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

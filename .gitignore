@@ -1,0 +1,12 @@
+# Dependencies
+server/node_modules/
+
+# Build artifacts
+web-ext-artifacts/
+*.zip
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
