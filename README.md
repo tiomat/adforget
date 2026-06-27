@@ -83,11 +83,16 @@ The extension icon should appear in the toolbar.
 
 1. Open any website.
 2. Click the AdForget icon in Firefox toolbar.
-3. Filter domains by resource type (Document, Scripts, CSS, Images, Media, XHR, Other).
-4. Click **Block** next to a domain to add it to `adlist.txt`.
-5. Click **Unblock** to remove it.
+3. Use the top filter row to show **All**, **Blocked**, or **Allowed** domains.
+4. Use the bottom filter row to filter by resource type (Document, Scripts, CSS, Images, Media, XHR, Other). Each filter has an icon matching the domain icons.
+5. Click **Block** next to a domain to add it to `adlist.txt`.
+6. Click **Unblock** to remove it.
 
 The server batches changes and commits/pushes to GitHub within a few seconds.
+
+### Note on video streaming
+
+Many video streaming sites use HLS/DASH segments (`.m3u8`, `.mpd`, `.ts`, `.mp4`, etc.) over `XMLHttpRequest` or `fetch`. The extension detects these URLs by file extension and categorizes them as **Media** even when Firefox reports them as XHR.
 
 ## AdGuard Home integration
 

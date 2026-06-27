@@ -23,6 +23,16 @@ function getCategory(type) {
   return CATEGORY_MAP[type] || 'other';
 }
 
+function looksLikeMedia(url) {
+  try {
+    const pathname = new URL(url).pathname.toLowerCase();
+    const mediaExtensions = /\.(m3u8|mpd|ts|mp4|webm|mkv|avi|mov|flv|wmv|mp3|aac|ogg|oga|flac|wav|m4a|wma|opus|weba)(\?.*)?$/;
+    return mediaExtensions.test(pathname);
+  } catch {
+    return false;
+  }
+}
+
 function extractDomain(url) {
   try {
     return new URL(url).hostname;
@@ -45,7 +55,12 @@ function recordRequest(tabId, url, resourceType) {
   if (!domains.has(domain)) {
     domains.set(domain, new Set());
   }
-  domains.get(domain).add(getCategory(resourceType));
+
+  let category = getCategory(resourceType);
+  if (category === 'xhr' && looksLikeMedia(url)) {
+    category = 'media';
+  }
+  domains.get(domain).add(category);
 }
 
 browser.webRequest.onBeforeRequest.addListener(

@@ -12,15 +12,21 @@
     <div class="status" id="server-status">checking server…</div>
   </div>
 
-  <div class="filters" id="filters">
-    <button class="filter active" data-filter="all">All</button>
-    <button class="filter" data-filter="document">Doc</button>
-    <button class="filter" data-filter="script">Scripts</button>
-    <button class="filter" data-filter="stylesheet">CSS</button>
-    <button class="filter" data-filter="image">Images</button>
-    <button class="filter" data-filter="media">Media</button>
-    <button class="filter" data-filter="xhr">XHR</button>
-    <button class="filter" data-filter="other">Other</button>
+  <div class="filters state-filters" id="state-filters">
+    <button class="filter active" data-state="all">All</button>
+    <button class="filter" data-state="blocked">Blocked</button>
+    <button class="filter" data-state="unblocked">Allowed</button>
+  </div>
+
+  <div class="filters type-filters" id="type-filters">
+    <button class="filter active" data-filter="all"><span class="filter-icon">🌐</span> All</button>
+    <button class="filter" data-filter="document"><span class="filter-icon">📄</span> Doc</button>
+    <button class="filter" data-filter="script"><span class="filter-icon">⚡</span> Scripts</button>
+    <button class="filter" data-filter="stylesheet"><span class="filter-icon">🎨</span> CSS</button>
+    <button class="filter" data-filter="image"><span class="filter-icon">🖼️</span> Images</button>
+    <button class="filter" data-filter="media"><span class="filter-icon">🎬</span> Media</button>
+    <button class="filter" data-filter="xhr"><span class="filter-icon">📡</span> XHR</button>
+    <button class="filter" data-filter="other"><span class="filter-icon">📦</span> Other</button>
   </div>
 
   <div class="search">

@@ -2,19 +2,40 @@ const SERVER_URL = 'http://localhost:3000';
 
 let currentDomains = [];
 let blockedDomains = new Set();
-let activeFilter = 'all';
+let activeTypeFilter = 'all';
+let activeStateFilter = 'all';
 let searchQuery = '';
 
 const domainListEl = document.getElementById('domain-list');
 const statusEl = document.getElementById('server-status');
 const searchInput = document.getElementById('search-input');
-const filterButtons = document.querySelectorAll('.filter');
+const typeFilterButtons = document.querySelectorAll('#type-filters .filter');
+const stateFilterButtons = document.querySelectorAll('#state-filters .filter');
 
-filterButtons.forEach((btn) => {
+const CATEGORY_ICONS = {
+  document: '📄',
+  script: '⚡',
+  stylesheet: '🎨',
+  image: '🖼️',
+  media: '🎬',
+  xhr: '📡',
+  other: '📦'
+};
+
+typeFilterButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
-    filterButtons.forEach((b) => b.classList.remove('active'));
+    typeFilterButtons.forEach((b) => b.classList.remove('active'));
     btn.classList.add('active');
-    activeFilter = btn.dataset.filter;
+    activeTypeFilter = btn.dataset.filter;
+    render();
+  });
+});
+
+stateFilterButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    stateFilterButtons.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeStateFilter = btn.dataset.state;
     render();
   });
 });
@@ -51,21 +72,12 @@ async function loadData() {
     render();
   } catch (err) {
     console.error('[AdForget] Failed to load data:', err);
-    domainListEl.innerHTML = '<div class="empty">Error loading data</div>';
+    domainListEl.replaceChildren(createEmptyNode('Error loading data'));
   }
 }
 
 function getCategoryIcon(category) {
-  const icons = {
-    document: '📄',
-    script: '⚡',
-    stylesheet: '🎨',
-    image: '🖼️',
-    media: '🎬',
-    xhr: '📡',
-    other: '📦'
-  };
-  return icons[category] || '📦';
+  return CATEGORY_ICONS[category] || '📦';
 }
 
 function createEmptyNode(text) {
@@ -77,9 +89,18 @@ function createEmptyNode(text) {
 
 function render() {
   const filtered = currentDomains.filter((item) => {
-    const matchesFilter = activeFilter === 'all' || item.categories.includes(activeFilter);
+    const matchesType = activeTypeFilter === 'all' || item.categories.includes(activeTypeFilter);
     const matchesSearch = !searchQuery || item.domain.toLowerCase().includes(searchQuery);
-    return matchesFilter && matchesSearch;
+    const isBlocked = blockedDomains.has(item.domain);
+
+    let matchesState = true;
+    if (activeStateFilter === 'blocked') {
+      matchesState = isBlocked;
+    } else if (activeStateFilter === 'unblocked') {
+      matchesState = !isBlocked;
+    }
+
+    return matchesType && matchesState && matchesSearch;
   });
 
   domainListEl.replaceChildren();

@@ -5,8 +5,8 @@
 body {
   margin: 0;
   padding: 0;
-  width: 380px;
-  min-height: 300px;
+  width: 420px;
+  min-height: 500px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 13px;
   color: #222;
@@ -44,24 +44,44 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  padding: 10px 12px;
+  padding: 8px 12px;
   background: white;
   border-bottom: 1px solid #e0e0e0;
+}
+
+.state-filters {
+  padding-bottom: 6px;
+}
+
+.type-filters {
+  padding-top: 6px;
 }
 
 .filter {
   border: 1px solid #ddd;
   background: #f5f5f5;
-  border-radius: 12px;
-  padding: 4px 10px;
+  border-radius: 14px;
+  padding: 5px 10px;
   cursor: pointer;
   font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filter-icon {
+  font-size: 12px;
 }
 
 .filter.active {
   background: #2c3e50;
   color: white;
   border-color: #2c3e50;
+}
+
+.state-filters .filter.active {
+  background: #8e44ad;
+  border-color: #8e44ad;
 }
 
 .search {
@@ -79,7 +99,7 @@ body {
 }
 
 .domain-list {
-  max-height: 360px;
+  max-height: 420px;
   overflow-y: auto;
 }
 
