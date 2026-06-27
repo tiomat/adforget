@@ -80,6 +80,36 @@ function getCategoryIcon(category) {
   return CATEGORY_ICONS[category] || '📦';
 }
 
+const SECOND_LEVEL_CCTLD = new Set([
+  'co', 'com', 'org', 'net', 'gov', 'edu', 'ac', 'sch', 'me', 'nom', 'id',
+  'plc', 'ltd', 'firm', 'info', 'biz', 'name', 'pro', 'web'
+]);
+
+function getRootDomain(domain) {
+  const parts = domain.split('.');
+  if (parts.length <= 2) return domain;
+
+  const tld = parts[parts.length - 1];
+  const sld = parts[parts.length - 2];
+
+  // Handle common second-level ccTLDs like co.uk, com.au, etc.
+  if (tld.length === 2 && SECOND_LEVEL_CCTLD.has(sld) && parts.length >= 3) {
+    return parts.slice(-3).join('.');
+  }
+
+  return parts.slice(-2).join('.');
+}
+
+function isDomainOrParentBlocked(domain) {
+  if (blockedDomains.has(domain)) return true;
+  const parts = domain.split('.');
+  for (let i = 1; i < parts.length; i++) {
+    const parent = parts.slice(i).join('.');
+    if (blockedDomains.has(parent)) return true;
+  }
+  return false;
+}
+
 function createEmptyNode(text) {
   const el = document.createElement('div');
   el.className = 'empty';
@@ -91,13 +121,13 @@ function render() {
   const filtered = currentDomains.filter((item) => {
     const matchesType = activeTypeFilter === 'all' || item.categories.includes(activeTypeFilter);
     const matchesSearch = !searchQuery || item.domain.toLowerCase().includes(searchQuery);
-    const isBlocked = blockedDomains.has(item.domain);
+    const effectivelyBlocked = isDomainOrParentBlocked(item.domain);
 
     let matchesState = true;
     if (activeStateFilter === 'blocked') {
-      matchesState = isBlocked;
+      matchesState = effectivelyBlocked;
     } else if (activeStateFilter === 'unblocked') {
-      matchesState = !isBlocked;
+      matchesState = !effectivelyBlocked;
     }
 
     return matchesType && matchesState && matchesSearch;
@@ -111,7 +141,10 @@ function render() {
   }
 
   for (const item of filtered) {
-    const isBlocked = blockedDomains.has(item.domain);
+    const rootDomain = getRootDomain(item.domain);
+    const exactBlocked = blockedDomains.has(item.domain);
+    const rootBlocked = blockedDomains.has(rootDomain);
+    const parentBlocked = !exactBlocked && !rootBlocked && isDomainOrParentBlocked(item.domain);
 
     const row = document.createElement('div');
     row.className = 'domain-row';
@@ -124,7 +157,10 @@ function render() {
     name.title = item.domain;
     name.textContent = item.domain;
 
-    const categories = document.createElement('div');
+    const meta = document.createElement('div');
+    meta.className = 'domain-meta';
+
+    const categories = document.createElement('span');
     categories.className = 'domain-categories';
     for (const c of item.categories) {
       const span = document.createElement('span');
@@ -134,17 +170,39 @@ function render() {
       categories.appendChild(span);
     }
 
-    info.appendChild(name);
-    info.appendChild(categories);
+    const rootLabel = document.createElement('span');
+    rootLabel.className = 'root-domain';
+    rootLabel.textContent = `root: ${rootDomain}`;
 
-    const btn = document.createElement('button');
-    btn.className = 'btn';
-    if (isBlocked) btn.classList.add('blocked');
-    btn.textContent = isBlocked ? 'Unblock' : 'Block';
-    btn.addEventListener('click', () => handleToggle(item.domain, isBlocked));
+    meta.appendChild(categories);
+    meta.appendChild(rootLabel);
+
+    info.appendChild(name);
+    info.appendChild(meta);
+
+    const actions = document.createElement('div');
+    actions.className = 'domain-actions';
+
+    const exactBtn = document.createElement('button');
+    exactBtn.className = 'btn';
+    if (exactBlocked) exactBtn.classList.add('blocked');
+    if (rootBlocked || parentBlocked) exactBtn.classList.add('disabled');
+    exactBtn.textContent = exactBlocked ? 'Unblock' : 'Block';
+    exactBtn.title = rootBlocked ? 'Blocked by root domain' : (parentBlocked ? 'Blocked by parent domain' : '');
+    exactBtn.disabled = rootBlocked || parentBlocked;
+    exactBtn.addEventListener('click', () => handleToggle(item.domain, exactBlocked));
+
+    const rootBtn = document.createElement('button');
+    rootBtn.className = 'btn btn-root';
+    if (rootBlocked) rootBtn.classList.add('blocked');
+    rootBtn.textContent = rootBlocked ? 'Unblock *' : 'Block *';
+    rootBtn.addEventListener('click', () => handleToggle(rootDomain, rootBlocked));
+
+    actions.appendChild(exactBtn);
+    actions.appendChild(rootBtn);
 
     row.appendChild(info);
-    row.appendChild(btn);
+    row.appendChild(actions);
     domainListEl.appendChild(row);
   }
 }

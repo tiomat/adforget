@@ -85,8 +85,10 @@ The extension icon should appear in the toolbar.
 2. Click the AdForget icon in Firefox toolbar.
 3. Use the top filter row to show **All**, **Blocked**, or **Allowed** domains.
 4. Use the bottom filter row to filter by resource type (Document, Scripts, CSS, Images, Media, XHR, Other). Each filter has an icon matching the domain icons.
-5. Click **Block** next to a domain to add it to `adlist.txt`.
-6. Click **Unblock** to remove it.
+5. Each domain has two action buttons:
+   - **Block / Unblock** — blocks the exact domain (e.g. `log.strm.example.com`).
+   - **Block \* / Unblock \*** — blocks the root domain (e.g. `example.com`), which covers all subdomains.
+   - If a parent domain is already blocked, the exact-domain button is disabled with a tooltip.
 
 The server batches changes and commits/pushes to GitHub within a few seconds.
 

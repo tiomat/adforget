@@ -137,8 +137,15 @@ body {
   text-align: left;
 }
 
-.domain-categories {
+.domain-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-top: 3px;
+  font-size: 11px;
+}
+
+.domain-categories {
   font-size: 12px;
 }
 
@@ -146,11 +153,22 @@ body {
   margin-right: 4px;
 }
 
+.root-domain {
+  color: #888;
+  font-size: 10px;
+}
+
+.domain-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .btn {
   border: none;
   border-radius: 4px;
-  padding: 5px 12px;
-  font-size: 12px;
+  padding: 4px 10px;
+  font-size: 11px;
   font-weight: 600;
   cursor: pointer;
   background: #e74c3c;
@@ -162,6 +180,21 @@ body {
   background: #7f8c8d;
 }
 
-.btn:hover {
+.btn.btn-root {
+  background: #c0392b;
+}
+
+.btn.btn-root.blocked {
+  background: #7f8c8d;
+}
+
+.btn:disabled,
+.btn.disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.btn:hover:not(:disabled) {
   opacity: 0.9;
 }
