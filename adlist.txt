@@ -1,3 +1,4 @@
+||931221.log.rutube.ru^
 ||api.expf.ru^
 ||api.vigo.tech^
 ||banners.adfox.ru^
@@ -10,5 +11,6 @@
 ||ssp.rutube.ru^
 ||static.rutubelist.ru^
 ||test.rutube.ru^
+||tns-counter.ru^
 ||wcm.weborama-tech.ru^
 ||www.tns-counter.ru^
