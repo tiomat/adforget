@@ -161,20 +161,22 @@ body {
 .domain-actions {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .btn {
   border: none;
   border-radius: 4px;
-  padding: 5px 10px;
+  padding: 4px 8px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   background: #e74c3c;
   color: white;
   white-space: nowrap;
-  min-width: 36px;
+  min-width: 30px;
   text-align: center;
 }
 
