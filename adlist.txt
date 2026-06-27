@@ -1,2 +1,3 @@
 ||api.expf.ru^
 ||cdn.uxfeedback.ru^
+||wcm.weborama-tech.ru^
