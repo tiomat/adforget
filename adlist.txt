@@ -3,9 +3,12 @@
 ||banners.adfox.ru^
 ||cdn-st.rutubelist.ru^
 ||cdn.uxfeedback.ru^
+||cdn.vigo.tech^
 ||goya.rutube.ru^
 ||log.rutube.ru^
 ||premier-static.rtbcdn.ru^
+||ssp.rutube.ru^
 ||static.rutubelist.ru^
 ||test.rutube.ru^
 ||wcm.weborama-tech.ru^
+||www.tns-counter.ru^
