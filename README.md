@@ -14,6 +14,7 @@ Firefox extension + local server that inspects domains used by the current web p
 
 ```
 .
+├── adforget.sh          # Server control script (start/stop/restart/status/logs)
 ├── adlist.txt           # AdGuard Home blocklist (managed by server)
 ├── server/
 │   ├── package.json
@@ -45,8 +46,14 @@ npm install
 
 ### 2. Start the server
 
+Use the control script from the project root:
+
 ```bash
-npm start
+./adforget.sh start      # start server in background
+./adforget.sh status     # check if running
+./adforget.sh logs       # tail server logs
+./adforget.sh stop       # stop server
+./adforget.sh restart    # restart server
 ```
 
 Server listens on `http://localhost:3000`.
@@ -54,7 +61,14 @@ Server listens on `http://localhost:3000`.
 To run without git sync (useful for development):
 
 ```bash
-ADFORGET_NO_GIT=1 npm start
+ADFORGET_NO_GIT=1 ./adforget.sh start
+```
+
+Or start directly from the `server/` directory:
+
+```bash
+cd server
+npm start
 ```
 
 ### 3. Install the Firefox extension

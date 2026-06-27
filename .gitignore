@@ -8,5 +8,9 @@ web-ext-artifacts/
 # OS files
 .DS_Store
 
+# Runtime files
+server/adforget-server.pid
+server/adforget-server.log
+
 # Logs
 *.log
