@@ -1,4 +1,5 @@
 ||api.expf.ru^
+||api.vigo.tech^
 ||banners.adfox.ru^
 ||cdn.uxfeedback.ru^
 ||goya.rutube.ru^
