@@ -3,7 +3,7 @@ const SERVER_URL = 'http://localhost:3000';
 let currentDomains = [];
 let blockedDomains = new Set();
 let activeTypeFilter = 'all';
-let activeStateFilter = 'all';
+let activeStateFilter = 'unblocked';
 let searchQuery = '';
 
 const domainListEl = document.getElementById('domain-list');
