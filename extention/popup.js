@@ -187,15 +187,16 @@ function render() {
     exactBtn.className = 'btn';
     if (exactBlocked) exactBtn.classList.add('blocked');
     if (rootBlocked || parentBlocked) exactBtn.classList.add('disabled');
-    exactBtn.textContent = exactBlocked ? 'Unblock' : 'Block';
-    exactBtn.title = rootBlocked ? 'Blocked by root domain' : (parentBlocked ? 'Blocked by parent domain' : '');
+    exactBtn.textContent = exactBlocked ? 'U' : 'B';
+    exactBtn.title = rootBlocked ? 'Blocked by root domain' : (parentBlocked ? 'Blocked by parent domain' : (exactBlocked ? 'Unblock exact domain' : 'Block exact domain'));
     exactBtn.disabled = rootBlocked || parentBlocked;
     exactBtn.addEventListener('click', () => handleToggle(item.domain, exactBlocked));
 
     const rootBtn = document.createElement('button');
     rootBtn.className = 'btn btn-root';
     if (rootBlocked) rootBtn.classList.add('blocked');
-    rootBtn.textContent = rootBlocked ? 'Unblock *' : 'Block *';
+    rootBtn.textContent = rootBlocked ? 'U*' : 'B*';
+    rootBtn.title = rootBlocked ? 'Unblock root domain' : 'Block root domain';
     rootBtn.addEventListener('click', () => handleToggle(rootDomain, rootBlocked));
 
     actions.appendChild(exactBtn);
