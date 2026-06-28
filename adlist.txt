@@ -1,5 +1,6 @@
 ||1083--c8d56ac8-3e03-4fa6-bef5-2cd8add958e4.stbid.ru^
 ||931221.log.rutube.ru^
+||amazon-adsystem.com^
 ||api.expf.ru^
 ||api.vigo.tech^
 ||banners.adfox.ru^
