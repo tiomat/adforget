@@ -10,6 +10,7 @@
 ||edge02d.mediavitrina.ru^
 ||gateway.teleport.media^
 ||goya.rutube.ru^
+||live-video.net^
 ||log.rutube.ru^
 ||media.mediavitrina.ru^
 ||premier-static.rtbcdn.ru^
