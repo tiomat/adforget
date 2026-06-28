@@ -16,6 +16,7 @@
 ||media.mediavitrina.ru^
 ||premier-static.rtbcdn.ru^
 ||river-m9-ihome-d365.rtbcdn.ru^
+||scorecardresearch.com^
 ||serving-sys.ru^
 ||ssp.rutube.ru^
 ||stat-analytics.mediavitrina.ru^
