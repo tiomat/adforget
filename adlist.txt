@@ -6,6 +6,7 @@
 ||amazon-adsystem.com^
 ||api.expf.ru^
 ||api.vigo.tech^
+||avatars.mds.yandex.net^
 ||banners.adfox.ru^
 ||betweendigital.com^
 ||bidderstack.com^
