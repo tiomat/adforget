@@ -9,6 +9,7 @@
 ||cdn.vigo.tech^
 ||counter.yadro.ru^
 ||dmg.digitaltarget.ru^
+||edge-upvideo.rbc.ru^
 ||edge02d.mediavitrina.ru^
 ||gateway.teleport.media^
 ||goya.rutube.ru^
