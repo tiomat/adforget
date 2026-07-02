@@ -20,6 +20,7 @@
 ||dmg.digitaltarget.ru^
 ||edge-upvideo.rbc.ru^
 ||edge02d.mediavitrina.ru^
+||favicon.yandex.net^
 ||gateway.teleport.media^
 ||getshop.tv^
 ||goya.rutube.ru^
