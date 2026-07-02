@@ -27,6 +27,7 @@
 ||premier-static.rtbcdn.ru^
 ||river-m9-ihome-d365.rtbcdn.ru^
 ||rutarget.ru^
+||s.luxcdn.com^
 ||scorecardresearch.com^
 ||serving-sys.ru^
 ||skcrtxr.com^
