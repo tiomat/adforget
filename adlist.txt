@@ -7,7 +7,6 @@
 ||amazon-adsystem.com^
 ||api.expf.ru^
 ||api.vigo.tech^
-||avatars.mds.yandex.net^
 ||banners.adfox.ru^
 ||betweendigital.com^
 ||bidderstack.com^
@@ -44,7 +43,6 @@
 ||static.rutubelist.ru^
 ||static.wi-fi.ru^
 ||staticmv.mediavitrina.ru^
-||strm-m9-45.strm.yandex.net^
 ||strm.yandex.ru^
 ||swarm-obi.teleport.media^
 ||telecid.ru^
