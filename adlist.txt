@@ -43,7 +43,7 @@
 ||static.rutubelist.ru^
 ||static.wi-fi.ru^
 ||staticmv.mediavitrina.ru^
-||strm.yandex.ru^
+||log.strm.yandex.ru^
 ||swarm-obi.teleport.media^
 ||telecid.ru^
 ||test.rutube.ru^
