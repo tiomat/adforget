@@ -1,0 +1,6 @@
+# Blocky allowlist (tiomat/adforget) — domains that must NEVER be blocked.
+# One domain per line; AdGuard "||domain^" syntax is also accepted.
+# Blocklist entries live in adlist.txt. Blocky on ru2/eu1 (and usa1 later)
+# refreshes both once an hour — push a line here to allow a domain fleet-wide.
+yast.rutube.ru
+river-m9-ihome-d365.rtbcdn.ru
