@@ -1,16 +1,22 @@
 const SERVER_URL = 'http://localhost:3000';
+const SITE_STATE_KEY = 'adforgetSiteState';
 
 let currentDomains = [];
 let blockedDomains = new Set();
 let activeTypeFilter = 'all';
 let activeStateFilter = 'unblocked';
 let searchQuery = '';
+let currentHostname = '';
+let siteState = { iframes: false, bigImages: false, noTextBlocks: false };
 
 const domainListEl = document.getElementById('domain-list');
 const statusEl = document.getElementById('server-status');
 const searchInput = document.getElementById('search-input');
 const typeFilterButtons = document.querySelectorAll('#type-filters .filter');
 const stateFilterButtons = document.querySelectorAll('#state-filters .filter');
+const iframeBtn = document.getElementById('iframe-btn');
+const bigImgBtn = document.getElementById('bigimg-btn');
+const noTextBtn = document.getElementById('notext-btn');
 
 const CATEGORY_ICONS = {
   document: '📄',
@@ -224,8 +230,95 @@ async function handleToggle(domain, isBlocked) {
   }
 }
 
+
+
+function getHostname(url) {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return '';
+  }
+}
+
+function updateSiteButtons() {
+  iframeBtn.classList.toggle('active', siteState.iframes);
+  bigImgBtn.classList.toggle('active', siteState.bigImages);
+  noTextBtn.classList.toggle('active', siteState.noTextBlocks);
+}
+
+function disableSiteButtons() {
+  iframeBtn.disabled = true;
+  bigImgBtn.disabled = true;
+  noTextBtn.disabled = true;
+}
+
+async function loadSiteState() {
+  try {
+    if (!browser.storage) {
+      disableSiteButtons();
+      console.error('[AdForget] Storage API is not available. Reload the extension in about:debugging.');
+      return;
+    }
+
+    const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+    const url = tabs[0]?.url || '';
+    currentHostname = getHostname(url);
+
+    if (!currentHostname) {
+      disableSiteButtons();
+      return;
+    }
+
+    const data = await browser.storage.local.get(SITE_STATE_KEY);
+    const all = data[SITE_STATE_KEY] || {};
+    siteState = all[currentHostname] || { iframes: false, bigImages: false, noTextBlocks: false };
+    updateSiteButtons();
+  } catch (err) {
+    console.error('[AdForget] Failed to load site state:', err);
+    disableSiteButtons();
+  }
+}
+
+async function saveSiteState() {
+  if (!browser.storage) return;
+  const data = await browser.storage.local.get(SITE_STATE_KEY);
+  const all = data[SITE_STATE_KEY] || {};
+  all[currentHostname] = siteState;
+  await browser.storage.local.set({ [SITE_STATE_KEY]: all });
+}
+
+async function notifyContentScript() {
+  try {
+    const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+    const tabId = tabs[0]?.id;
+    if (tabId) {
+      await browser.tabs.sendMessage(tabId, { action: 'applySiteState' });
+    }
+  } catch {
+    // Content script is not available on this page; it will apply on next load.
+  }
+}
+
+async function toggleSiteState(key) {
+  if (!currentHostname) return;
+  siteState[key] = !siteState[key];
+  updateSiteButtons();
+  try {
+    await saveSiteState();
+    await notifyContentScript();
+  } catch (err) {
+    console.error('[AdForget] Toggle failed:', err);
+    alert('Failed to save state. Is the extension reloaded?');
+  }
+}
+
+iframeBtn.addEventListener('click', () => toggleSiteState('iframes'));
+bigImgBtn.addEventListener('click', () => toggleSiteState('bigImages'));
+noTextBtn.addEventListener('click', () => toggleSiteState('noTextBlocks'));
+
 async function init() {
   await checkServer();
+  await loadSiteState();
   await loadData();
 }
 

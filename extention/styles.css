@@ -53,6 +53,51 @@ body {
   padding-bottom: 6px;
 }
 
+.page-tools {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tool-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  border-radius: 16px;
+  padding: 7px 8px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #444;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.tool-btn .tool-icon {
+  font-size: 13px;
+}
+
+.tool-btn:hover:not(:disabled) {
+  background: #eaeaea;
+}
+
+.tool-btn.active {
+  background: #8e44ad;
+  border-color: #8e44ad;
+  color: #fff;
+}
+
+.tool-btn:disabled {
+  background: #f0f0f0;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
 .type-filters {
   padding-top: 6px;
 }
